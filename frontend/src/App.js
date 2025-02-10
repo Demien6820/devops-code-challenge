@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import './App.css';
-import API_URL from './config'
 
 function App() {
   const [successMessage, setSuccessMessage] = useState() 
   const [failureMessage, setFailureMessage] = useState() 
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const getId = async () => {
       try {
-        const resp = await fetch(API_URL)
+        const resp = await fetch(apiUrl);
         setSuccessMessage((await resp.json()).id)
       }
       catch(e) {
