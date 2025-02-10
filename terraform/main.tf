@@ -29,3 +29,15 @@ module "ecsCluster" {
   target_group_name              = local.target_group_name
   demo_app_service_name          = local.demo_app_service_name
 }
+
+module "jenkins" {
+  source = "./modules/jenkins"
+
+  instance_type = "t2.micro"
+  ami_id        = "ami-003d3d03cfe1b0468"
+  vpc_id        = "vpc-0402134156ffa8d6b"
+  subnet_id     = "subnet-0080129d74840c463"
+  security_group_ids = ["sg-0e01f6622a4c2a920"]
+  jenkins_admin_username = "admin"
+  jenkins_admin_password = "admin"
+}
